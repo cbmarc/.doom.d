@@ -11,7 +11,7 @@
 ;; Reset treemacs icons
 ;;(with-eval-after-load "treemacs"
 ;;  (treemacs-reset-icons))
-(add-hook-if-possible! 'emacs-startup-hook
+(add-hook-please! 'emacs-startup-hook
   (with-eval-after-load 'treemacs
     (treemacs-reset-icons)))
 
