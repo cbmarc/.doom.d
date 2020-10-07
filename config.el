@@ -5,13 +5,13 @@
 ;; Set global fonts
 ;;(add-to-list 'default-frame-alist '(font . "Ubuntu Mono 16" ))
 ;;(set-face-attribute 'default t :font "Ubuntu Mono 16" )
-(always-add-to-list 'default-frame-alist '(font . "Fira Code 14" ))
+(coco-add-to-list 'default-frame-alist '(font . "Fira Code 14" ))
 (set-face-attribute 'default t :font "Fira Code 14" )
 
 ;; Reset treemacs icons
 ;;(with-eval-after-load "treemacs"
 ;;  (treemacs-reset-icons))
-(add-hook-please! 'emacs-startup-hook
+(add-hook-pleaset! 'emacs-startup-hook
   (with-eval-after-load 'treemacs
     (treemacs-reset-icons)))
 
