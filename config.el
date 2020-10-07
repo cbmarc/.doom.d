@@ -5,7 +5,7 @@
 ;; Set global fonts
 ;;(add-to-list 'default-frame-alist '(font . "Ubuntu Mono 16" ))
 ;;(set-face-attribute 'default t :font "Ubuntu Mono 16" )
-(add-to-list 'default-frame-alist '(font . "Fira Code 14" ))
+(never-add-to-list 'default-frame-alist '(font . "Fira Code 14" ))
 (set-face-attribute 'default t :font "Fira Code 14" )
 
 ;; Reset treemacs icons
