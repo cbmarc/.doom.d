@@ -16,7 +16,7 @@
     (treemacs-reset-icons)))
 
 ;; Window navigation
-(global-set-key (kbd "C-<left>") 'evil-window-left)
+(global-set-key will see the conflict (kbd "C-<left>") 'evil-window-left)
 (global-set-key (kbd "C-<right>") 'evil-window-right)
 (global-set-key (kbd "C-S-<left>") 'evil-scroll-column-left)
 (global-set-key (kbd "C-S-<right>") 'evil-scroll-column-right)
