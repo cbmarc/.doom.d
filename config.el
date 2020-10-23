@@ -33,7 +33,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type nil)
 
 
 ;; Here are some additional functions/macros that could help you configure Doom:
@@ -61,8 +61,8 @@
   :bind ("M-w" . clipetty-kill-ring-save))
 
 ;; JS
-(after! dtrt-indent
-  (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-mode javascript typescript-tsx-mode js2-mode typescript-indent-level)))
+;; (after! dtrt-indent
+;;   (add-to-list 'dtrt-indent-hook-mapping-list '(typescript-mode javascript typescript-tsx-mode js2-mode typescript-indent-level)))
 
 (use-package emacs
   :preface
@@ -87,19 +87,34 @@
 (use-package flycheck
   :ensure t
   :config
-  (add-hook 'typescript-mode-hook 'flycheck-mode))
+  (setq flycheck-check-syntax-automatically '(mode-enabled save idle-change))
+  (setq flycheck-highlighting-mode 'symbols)
+  ;; Show indicators in the left margin
+  (setq flycheck-indication-mode 'left-margin)
+  (setq flycheck-idle-change-delay 0)
+  (add-hook 'typescript-mode-hook 'flycheck-mode)
+  (add-hook 'typescript-tsx-mode-hook 'flycheck-mode))
+
+;; Adjust margins and fringe widths…
+(defun my/set-flycheck-margins ()
+  (setq left-fringe-width 8 right-fringe-width 8
+        left-margin-width 1 right-margin-width 0)
+  (flycheck-refresh-fringes-and-margins))
 
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
   (flycheck-mode +1)
-  (setq flycheck-check-syntax-automatically '(idle-change save mode-enabled))
+
+  ;; …every time Flycheck is activated in a new buffer
+  (add-hook 'flycheck-mode-hook #'my/set-flycheck-margins)
   (eldoc-mode +1)
-  (tide-hl-identifier-mode +1)
+  ;; (tide-hl-identifier-mode +1)
   ;; company is an optional dependency. You have to
   ;; install it separately via package-install
   ;; `M-x package-install [ret] company`
-  (company-mode +1))
+  (company-mode +1)
+  )
 
 (use-package company
   :ensure t
@@ -142,16 +157,32 @@
   ;; enable typescript-tslint checker
   (flycheck-add-mode 'typescript-tslint 'web-mode))
 
-(use-package typescript-mode
-  :ensure t
-  :config
-  (setq typescript-indent-level 2)
-  (add-hook 'typescript-mode #'subword-mode))
+;; (add-hook 'js2-mode-hook 'prettier-js-mode)
+;; (add-hook 'web-mode-hook 'prettier-js-mode)
+;; (add-hook 'web-mode-hook
+;;           (lambda ()
+;;             (add-hook 'before-save-hook 'prettier-js nil 'make-it-local)))
 
 (use-package tide
   :init
   :ensure t
   :after (typescript-mode company flycheck)
   :hook ((typescript-mode . tide-setup)
+         (typescript-tsx-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
-         (before-save . prettier-js)))
+         ;; (web-mode . tide-hl-identifier-mode)
+         (typescript-tsx-mode . tide-hl-identifier-mode)))
+
+
+;; (use-package flycheck-posframe
+;;   :ensure t
+;;   :after flycheck
+;;   :config (add-hook 'flycheck-mode-hook
+;;                     (lambda ()
+;;                       (flycheck-posframe-mode)
+;;                       (flycheck-posframe-configure-pretty-defaults)
+;;                       (setq flycheck-posframe-position 'window-bottom-left-corner)
+;;                       )))
+
+(when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
