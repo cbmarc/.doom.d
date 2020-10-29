@@ -50,12 +50,12 @@
 ;(unpin! t)
 
 ;; Clipboard
-(package! clipetty)
+;; (package! clipetty)
 
 ;; JS extras
 (package! prettier-js)
-(package! company-quickhelp)
 
-;;(package! icons-in-terminal)
-(package! flycheck-posframe)
+;; (package! flycheck-posframe)
 (package! exec-path-from-shell)
+(package! evil-matchit)
+(package! drag-stuff)
