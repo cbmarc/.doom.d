@@ -59,3 +59,4 @@
 (package! exec-path-from-shell)
 (package! evil-matchit)
 (package! drag-stuff)
+(package! direnv)

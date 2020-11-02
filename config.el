@@ -57,3 +57,7 @@
 (load "~/.doom.d/languages.config.el")
 (load "~/.doom.d/osx.config.el")
 (load "~/.doom.d/evil.config.el")
+
+(use-package direnv
+  :config
+  (direnv-mode))
