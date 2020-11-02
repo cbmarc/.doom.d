@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Export Interface Extends
+# key: eifaceex
+# --
+export interface $1 extends $2 {
+  $0
+}

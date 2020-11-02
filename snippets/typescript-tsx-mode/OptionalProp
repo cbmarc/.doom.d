@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Optional Prop
+# key: opr
+# --
+$1?: $2;

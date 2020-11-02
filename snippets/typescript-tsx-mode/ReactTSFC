@@ -1,0 +1,25 @@
+# -*- mode: snippet -*-
+# name: React Typescript Functional Component
+# key: reacttsfc
+# --
+import React from 'react';
+
+export type ${1:Something}Props = {
+  className?: string;
+};
+
+/**
+ * $1 component. ${2:Component description}
+ */
+export const $1: React.FunctionComponent<$1Props> = ({
+  className,
+  children,
+}) => {
+
+  return (
+    <div data-testid='$1' className={className}>
+      {children}
+    </div>
+  );
+};
+$0

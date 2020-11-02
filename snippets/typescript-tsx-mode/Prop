@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: Prop
+# key: pr
+# --
+$1: $2;

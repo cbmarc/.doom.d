@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Export Interface
+# key: eiface
+# --
+export interface $1 {
+  $0
+}

@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Export Type
+# key: etype
+# --
+export type $1 = {
+  $0
+};

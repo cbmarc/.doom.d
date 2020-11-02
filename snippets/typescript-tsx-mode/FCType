@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: FCType
+# key: fctype
+# --
+React.FunctionalComponent<$1>;
+$0
